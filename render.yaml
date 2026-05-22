@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ai-interview-backend
+    env: node
+    plan: free
+    branch: main
+    region: oregon
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: "/"
+    envVars:
+      - key: MONGODB_URI
+        value: ""
+      - key: GEMINI_API_KEY
+        value: ""
+      - key: FRONTEND_URL
+        value: ""
