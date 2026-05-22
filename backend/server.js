@@ -414,6 +414,21 @@ Respond professionally as an interviewer. Ask relevant technical or behavioral q
 
 // Start Server
 const PORT = process.env.PORT || 5000;
+// Health check route (Render uses this to verify service)
+app.get('/', (req, res) => res.status(200).send('OK'));
+
+// Global error handlers to surface startup/runtime issues in logs
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+});
+
+server.on('error', (err) => {
+  console.error('Server error:', err);
+});
+
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
